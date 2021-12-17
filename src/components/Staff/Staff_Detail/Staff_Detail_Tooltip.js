@@ -2,26 +2,7 @@ import React, { useState } from 'react';
 
 import { Button, Tooltip } from 'reactstrap';
 import dateFormat from 'dateformat';
-const deptName = (id) => {
-  switch (id) {
-    case 'Dept04':
-      return ' Phòng CNTT';
-      break;
-    case 'Dept02':
-      return ' Phòng Nhân sự';
-      break;
-    case 'Dept05':
-      return ' Phòng Tài chính';
-      break;
-    case 'Dept01':
-      return ' Phòng Kinh Doanh';
-      break;
-    case 'Dept03':
-      return ' Phòng Marketing';
-      break;
-    default:
-  }
-};
+import deptName from './DepartmentName';
 export default function TooltipStaffInfo({ staff, id }) {
   if (id === undefined) {
     id = '';
