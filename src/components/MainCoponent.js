@@ -118,6 +118,8 @@ export class Main extends Component {
         <DepartmentStaff
           staff={staffVar.filter((staff) => staff.departmentId === dept)}
           departments={departmentVar}
+          fetchDelStaffs={fetchDelStaffs}
+          fetchUpdateStaff={fetchUpdateStaff}
         />
       );
     }

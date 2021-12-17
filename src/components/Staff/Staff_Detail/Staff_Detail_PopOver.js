@@ -25,6 +25,7 @@ export default function PopoverStaffInfo({ staff, id }) {
         placement='bottom'
         target={'button' + id}
         toggle={() => setIsOpen(!isOpen)}
+        className='m-3 border border-success'
       >
         <PopoverHeader>ID: {id}</PopoverHeader>
         <PopoverBody>
