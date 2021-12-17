@@ -44,7 +44,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
         onClick={() => setIsModalOpen(!isModalOpen)}
         title='Thêm nhân viên'
       >
-        <span className='fa fa-cogs text-dark'></span>
+        <span className='fa fa-pencil-square-o text-dark'></span>
       </Button>
 
       {/*MODAL */}
