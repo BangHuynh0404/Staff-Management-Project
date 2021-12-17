@@ -39,12 +39,12 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
   return (
     <>
       <Button
-        className='btn-warning me-1 flex-fill'
-        color='success'
+        className='btn-warning flex-fill'
+        color='warning'
         onClick={() => setIsModalOpen(!isModalOpen)}
         title='Thêm nhân viên'
       >
-        <span className='fa fa-cogs fa-md text-dark'></span> Chỉnh sửa
+        <span className='fa fa-cogs text-dark'></span>
       </Button>
 
       {/*MODAL */}
@@ -71,7 +71,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   id='name'
                   name='name'
                   placeholder={staff.name}
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   validators={{
                     required,
                     minLength: minLength(6),
@@ -101,7 +101,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   id='doB'
                   name='doB'
                   type='date'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   placeholder={staff.doB}
                   validators={{ required }}
                 />
@@ -127,7 +127,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   type='date'
                   id='startDate'
                   name='startDate'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   placeholder={staff.startDate}
                   validators={{ required }}
                 />
@@ -152,7 +152,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   model='.department'
                   id='department'
                   name='department'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   defaultValue={staff.departmentId}
                 >
                   <option value='Dept04'>CNTT</option>
@@ -176,7 +176,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   id='salaryScale'
                   name='salaryScale'
                   rows='12'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   placeholder={parseFloat(staff.salaryScale)}
                   validators={{
                     required,
@@ -209,7 +209,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   id='annualLeave'
                   name='annualLeave'
                   rows='12'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   placeholder={staff.annualLeave}
                   validators={{
                     required,
@@ -239,7 +239,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
                   id='overTime'
                   name='overTime'
                   rows='12'
-                  className='form-control border border-success'
+                  className='form-control border border-warning'
                   placeholder={staff.overTime}
                   validators={{
                     required,
@@ -260,7 +260,7 @@ export default function UpdateStaffModal({ staff, id, fetchUpdateStaff }) {
             {/* SUBMIT */}
             <Row className='form-group mb-2'>
               <Col md={{ size: 4, offset: 8 }}>
-                <Button type='submit' color='success'>
+                <Button type='submit' color='warning'>
                   Lưu chỉnh sửa
                 </Button>
               </Col>

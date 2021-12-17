@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Card, CardTitle, CardBody, CardImg, Button } from 'reactstrap';
-import UpdateStaffModal from './Staff_form_update';
-
+import UpdateStaffModal from './Form/Staff_form_update';
+import PopoverStaffInfo from './Staff_Detail/Staff_Detail_PopOver';
+import TooltipStaffInfo from './Staff_Detail/Staff_Detail_Tooltip';
+import ModalStaffInfo from './Staff_Detail/Staff_Detail_Modal';
+import PopoverStaffDelete from './Staff_Detail/Staff_Delete_ConFirm_Popover';
+//HIỂN THỊ CARD CỦA NHÂN VIÊN
 export default function StaffList({
   departmentFilter,
   numOfCol,
   fetchDelStaffs,
   fetchUpdateStaff,
 }) {
-  const [isModalOpen, setModal] = useState(false);
-
   const staffList = departmentFilter.map((staff) => {
     return (
       <div
@@ -32,24 +34,25 @@ export default function StaffList({
             </CardTitle>
             <div className='d-flex justify-content-around '>
               {/* NÚT CHỈNH SỬA */}
-
               <UpdateStaffModal
                 staff={staff}
                 fetchUpdateStaff={fetchUpdateStaff}
                 id={staff.id}
               />
 
-              {/* NÚT XÓA */}
+              {/* THÔNG TIN NHÂN VIÊN */}
 
-              <Button
-                className='btn-danger ms-auto flex-fill'
-                onClick={() => {
-                  fetchDelStaffs(staff.id);
-                  setModal(!isModalOpen);
-                }}
-              >
-                Xóa
-              </Button>
+              {/* CHỌN KIỂU XEM INFO */}
+              {/* <TooltipStaffInfo staff={staff} id={staff.id} />*/}
+              {/* <ModalStaffInfo staff={staff} id={staff.id} />*/}
+              <PopoverStaffInfo staff={staff} id={staff.id} />
+
+              {/* NÚT XÓA */}
+              <PopoverStaffDelete
+                staff={staff}
+                id={staff.id}
+                fetchDelStaffs={fetchDelStaffs}
+              />
             </div>
           </CardBody>
         </Card>

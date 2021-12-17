@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Component } from 'react';
 import { Button, Input } from 'reactstrap';
-import AddStaffModal from './Staff_Form_Add';
+import AddStaffModal from './Form/Staff_Form_Add';
 
 import StaffList from './Staff_List';
 
