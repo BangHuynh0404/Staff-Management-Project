@@ -8,12 +8,12 @@ import DepartmentStaff from './Department/Department_Staff';
 import Salary from './Salary/SalaryComponent';
 import { connect } from 'react-redux';
 import {
-  fetchDelStaffs,
-  fetchDepartment,
-  fetchStaffs,
-  postStaff,
-  fetchSalary,
-  fetchUpdateStaff,
+  thunk_fetchDelStaffs,
+  thunk_fetchDepartment,
+  thunk_fetchStaffs,
+  thunk_postStaff,
+  thunk_fetchSalary,
+  thunk_fetchUpdateStaff,
 } from '../redux/ActionCreator';
 import { withRouter } from '../ReactWRfix';
 
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => ({
     overTime
   ) =>
     dispatch(
-      fetchUpdateStaff(
+      thunk_fetchUpdateStaff(
         id,
         name,
         doB,
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch) => ({
     overTime
   ) =>
     dispatch(
-      postStaff(
+      thunk_postStaff(
         name,
         doB,
         salaryScale,
@@ -69,15 +69,15 @@ const mapDispatchToProps = (dispatch) => ({
       )
     ),
   fetchStaffs: () => {
-    dispatch(fetchStaffs());
+    dispatch(thunk_fetchStaffs());
   },
   fetchDepartment: () => {
-    dispatch(fetchDepartment());
+    dispatch(thunk_fetchDepartment());
   },
   fetchDelStaffs: (id) => {
-    dispatch(fetchDelStaffs(id));
+    dispatch(thunk_fetchDelStaffs(id));
   },
-  fetchSalary: () => dispatch(fetchSalary()),
+  fetchSalary: () => dispatch(thunk_fetchSalary()),
 });
 export class Main extends Component {
   constructor(props) {
@@ -97,6 +97,9 @@ export class Main extends Component {
     let salaryVar = this.props.salary.salary;
     const arr = salaryVar.map((staff) => staff);
 
+    let postStaff = this.props.postStaff;
+    let fetchDelStaffs = this.props.fetchDelStaffs;
+    let fetchUpdateStaff = this.props.fetchUpdateStaff;
     // function StaffhWithId() {
     //   const { staffid } = useParams();
     //   return (
@@ -113,13 +116,24 @@ export class Main extends Component {
     // }
     function DepartmentAndStaff() {
       const { dept } = useParams();
-
+      if (dept !== null)
+        return (
+          <DepartmentStaff
+            staffVar={staffVar}
+            staff={staffVar.filter((staff) => staff.departmentId === dept)}
+            departments={departmentVar}
+            fetchDelStaffs={fetchDelStaffs}
+            postStaff={postStaff}
+            fetchUpdateStaff={fetchUpdateStaff}
+          />
+        );
       return (
-        <DepartmentStaff
-          staff={staffVar.filter((staff) => staff.departmentId === dept)}
-          departments={departmentVar}
-          fetchDelStaffs={fetchDelStaffs}
-          fetchUpdateStaff={fetchUpdateStaff}
+        <Staffs
+          staffs={this.props.staffs}
+          department={this.props.departments}
+          postStaff={this.props.postStaff}
+          fetchDelStaffs={this.props.fetchDelStaffs}
+          fetchUpdateStaff={this.props.fetchUpdateStaff}
         />
       );
     }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import dateFormat from 'dateformat';
+import dateFormat, { masks } from 'dateformat';
 import deptName from './DepartmentName';
 
 export default function ModalStaffInfo({ staff, id }) {
@@ -9,6 +9,8 @@ export default function ModalStaffInfo({ staff, id }) {
     id = '';
   }
   const [isOpen, setIsOpen] = useState(false);
+  console.log(staff.doB);
+  console.log(staff.startDate);
   return (
     <React.Fragment>
       <Button

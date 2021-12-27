@@ -1,11 +1,12 @@
 import * as ActionTypes from './ActionTypes';
 
-export const salaryReducer = (state = { salary: [] }, action) => {
+export const countReducer = (state = { count: 0 }, action) => {
+  console.log(action);
   switch (action.type) {
-    case ActionTypes.GET_SALARY:
+    case 'COUNT':
       return {
         ...state,
-        salary: action.payload,
+        count: state.count + 1,
       };
 
     default:

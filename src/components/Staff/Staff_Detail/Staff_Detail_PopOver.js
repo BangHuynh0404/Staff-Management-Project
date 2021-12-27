@@ -5,7 +5,7 @@ import dateFormat from 'dateformat';
 import deptName from './DepartmentName';
 export default function PopoverStaffInfo({ staff, id }) {
   if (id === undefined) {
-    id = 1;
+    id = '';
   }
   const [isOpen, setIsOpen] = useState(false);
   return (

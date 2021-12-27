@@ -3,19 +3,19 @@ import * as ActionTypes from './ActionTypes';
 import { baseUrl } from './baseUrl';
 
 // ! RENDER STAFF
-export const fetchStaffs = () => (dispatch) => {
+export const thunk_fetchStaffs = () => (dispatch) => {
   return fetch(baseUrl + 'staffs')
     .then((response) => response.json())
-    .then((staffs) => dispatch(renderStaffs(staffs)));
+    .then((staffs) => dispatch(action_renderStaffs(staffs)));
 };
-export const renderStaffs = (staffs) => ({
+export const action_renderStaffs = (staffs) => ({
   type: ActionTypes.RENDER_STAFF,
   payload: staffs,
 });
 
 //! STAFF ACTION
 //* POST
-export const postStaff =
+export const thunk_postStaff =
   (name, doB, salaryScale, startDate, departmentId, annualLeave, overTime) =>
   (dispatch) => {
     const newStaff = {
@@ -36,14 +36,14 @@ export const postStaff =
       credentials: 'same-origin',
     })
       .then((response) => response.json())
-      .then((response) => dispatch(addStaffs(response)));
+      .then((response) => dispatch(action_addStaffs(response)));
   };
-export const addStaffs = (staffs) => ({
+export const action_addStaffs = (staffs) => ({
   type: ActionTypes.ADD_STAFF,
   payload: staffs,
 });
 //DELETE
-export const fetchDelStaffs = (id) => (dispatch) => {
+export const thunk_fetchDelStaffs = (id) => (dispatch) => {
   return fetch(baseUrl + 'staffs/' + id, {
     method: 'DELETE',
     headers: {
@@ -52,17 +52,17 @@ export const fetchDelStaffs = (id) => (dispatch) => {
     credentials: 'same-origin',
   })
     .then((response) => response.json())
-    .then((staffs) => dispatch(delStaffs(staffs)));
+    .then((staffs) => dispatch(action_delStaffs(staffs)));
 };
 
-export const delStaffs = (staffs) => ({
+export const action_delStaffs = (staffs) => ({
   type: ActionTypes.DELETE_STAFF,
   payload: staffs,
 });
 
 //PATCH
 
-export const fetchUpdateStaff =
+export const thunk_fetchUpdateStaff =
   (
     id,
     name,
@@ -93,32 +93,36 @@ export const fetchUpdateStaff =
       credentials: 'same-origin',
     })
       .then((response) => response.json())
-      .then((response) => dispatch(updateStaff(response)));
+      .then((response) => dispatch(action_updateStaff(response)));
   };
 
-export const updateStaff = (staff) => ({
+export const action_updateStaff = (staff) => ({
   type: ActionTypes.UPDATE_STAFF,
   payload: staff,
 });
 // ! DEPARTMENT
 
-export const fetchDepartment = () => (dispatch) => {
+export const thunk_fetchDepartment = () => (dispatch) => {
   return fetch(baseUrl + 'departments')
     .then((response) => response.json())
-    .then((departments) => dispatch(addDepartments(departments)));
+    .then((departments) => dispatch(action_addDepartments(departments)));
 };
-export const addDepartments = (departments) => ({
+export const action_addDepartments = (departments) => ({
   type: ActionTypes.ADD_DEPARTMENT,
   payload: departments,
 });
 
 //! SALARY
-export const fetchSalary = () => (dispatch) => {
+export const thunk_fetchSalary = () => (dispatch) => {
   return fetch(baseUrl + 'staffsSalary')
     .then((res) => res.json())
-    .then((salaryStaff) => dispatch(getSalaryStaff(salaryStaff)));
+    .then((salaryStaff) => dispatch(action_getSalaryStaff(salaryStaff)));
 };
-export const getSalaryStaff = (salaryStaff) => ({
+export const action_getSalaryStaff = (salaryStaff) => ({
   type: ActionTypes.GET_SALARY,
   payload: salaryStaff,
+});
+
+export const Count = () => ({
+  type: 'COUNT',
 });

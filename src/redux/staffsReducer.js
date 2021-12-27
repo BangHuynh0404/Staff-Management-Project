@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-export const staffs = (state = { staffs: [] }, action) => {
+export const staffsReducer = (state = { staffs: [] }, action) => {
   switch (action.type) {
     case ActionTypes.RENDER_STAFF:
       return {

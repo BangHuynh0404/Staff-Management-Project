@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardText,
@@ -6,10 +6,20 @@ import {
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
 } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { thunk_fetchStaffs } from '../../redux/ActionCreator';
+import { Count } from '../../redux/ActionCreator';
 function Salary({ salaryStaff }) {
+  const { count } = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+  console.log(count);
+  useEffect(() => {
+    thunk_fetchStaffs();
+  }, []);
+
   //Tạo trạng thái cho thanh Lọc
   const [value, setValue] = useState('idAscending');
   //Function gán giá trị thanh lọc cho biến Value
@@ -115,6 +125,7 @@ function Salary({ salaryStaff }) {
         </select>
       </div>
       <div className='row'>{renderStaff}</div>
+      <button onClick={() => dispatch(Count())}>cong</button>
     </div>
   );
 }

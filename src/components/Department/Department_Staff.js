@@ -16,6 +16,7 @@ export default function DepartmentStaff({
   fetchDelStaffs,
   fetchUpdateStaff,
 }) {
+  console.log(staff[0]);
   let deptArr = departments.filter((dept) => dept.id === staff[0].departmentId);
   let deptReName = deptArr[0].id;
   return (

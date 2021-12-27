@@ -44,8 +44,8 @@ export default function StaffList({
 
               {/* CHỌN KIỂU XEM INFO */}
               {/* <TooltipStaffInfo staff={staff} id={staff.id} />*/}
-              {/* <ModalStaffInfo staff={staff} id={staff.id} />*/}
-              <PopoverStaffInfo staff={staff} id={staff.id} />
+              <ModalStaffInfo staff={staff} id={staff.id} />
+              {/*<PopoverStaffInfo staff={staff} id={staff.id} />*/}
 
               {/* NÚT XÓA */}
               <PopoverStaffDelete
