@@ -7,6 +7,7 @@ import Department from './Department/DepartmentComponent';
 import DepartmentStaff from './Department/Department_Staff';
 import Salary from './Salary/SalaryComponent';
 import { connect } from 'react-redux';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import {
   thunk_fetchDelStaffs,
   thunk_fetchDepartment,
@@ -142,42 +143,47 @@ export class Main extends Component {
       <div>
         <div className='body'>
           <NavbarCom />
-
-          <Routes>
-            <Route
-              path='/staffs'
-              element={
-                <Staffs
-                  staffs={this.props.staffs}
-                  department={this.props.departments}
-                  postStaff={this.props.postStaff}
-                  fetchDelStaffs={this.props.fetchDelStaffs}
-                  fetchUpdateStaff={this.props.fetchUpdateStaff}
+          <TransitionGroup>
+            <CSSTransition classNames='page' timeout={300}>
+              <Routes>
+                <Route
+                  path='/staffs'
+                  element={
+                    <Staffs
+                      staffs={this.props.staffs}
+                      department={this.props.departments}
+                      postStaff={this.props.postStaff}
+                      fetchDelStaffs={this.props.fetchDelStaffs}
+                      fetchUpdateStaff={this.props.fetchUpdateStaff}
+                    />
+                  }
                 />
-              }
-            />
 
-            {/*<Route path='/staffs/:staffid' element={<StaffhWithId />} /> */}
+                {/*<Route path='/staffs/:staffid' element={<StaffhWithId />} /> */}
 
-            <Route path='/staffs/*' element={<Navigate to='/staffs' />} />
-            <Route
-              path='/department'
-              element={
-                <Department departments={this.props.departments.departments} />
-              }
-            />
-            <Route
-              path='/department/:dept'
-              element={
-                <DepartmentAndStaff
-                  departments={this.props.departments.departments}
+                <Route path='/staffs/*' element={<Navigate to='/staffs' />} />
+                <Route
+                  path='/department'
+                  element={
+                    <Department
+                      departments={this.props.departments.departments}
+                    />
+                  }
                 />
-              }
-            />
+                <Route
+                  path='/department/:dept'
+                  element={
+                    <DepartmentAndStaff
+                      departments={this.props.departments.departments}
+                    />
+                  }
+                />
 
-            <Route path='/salary' element={<Salary salaryStaff={arr} />} />
-            <Route path='*' element={<Navigate to='/staffs' />} />
-          </Routes>
+                <Route path='/salary' element={<Salary salaryStaff={arr} />} />
+                <Route path='*' element={<Navigate to='/staffs' />} />
+              </Routes>
+            </CSSTransition>
+          </TransitionGroup>
         </div>
         <div className='footer'>
           <Footer />
